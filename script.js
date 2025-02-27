@@ -30,20 +30,36 @@ const ctx = canvas.getContext('2d');
 interval = 200;
 
 setInterval(() => {
-    ctx.fillStyle = 'rgba(255,255,255,0.1)'; //alpha più piccolo, storico più lento
+    ctx.fillStyle = 'rgba(255,255,255,0.05)'; //alpha più piccolo, storico più lento
     ctx.fillRect(0, 0, 600, 600);
 
-    const width = Math.random() * 200;
-    const height = Math.random() * 200;
+    // const width = Math.random() * 200;
+    // const height = Math.random() * 200;
 
-    const originX = Math.random() * (600 - width);
-    const originY = Math.random() * (600 - height);
+    // const originX = Math.random() * (600 - width);
+    // const originY = Math.random() * (600 - height);
+
+    const side = Math.random() * 200;
+    const originX = Math.random() * (600 - side);
+    const originY = Math.random() * (600 - side);
 
     const red = Math.random() * 255;
     const green = Math.random() * 255;
     const blue = Math.random() * 255;
     const alpha = Math.random();
 
-    ctx.fillStyle = `rgba(${red},${green},${blue},${alpha})`
-    ctx.fillRect(originX, originY, width, height);
+    ctx.fillStyle = `rgba(${red},${green},${blue},${alpha})`;
+
+    ctx.beginPath();
+    ctx.moveTo(originX, originY);
+    ctx.lineTo(originX+(side/2), originY+(side/2));
+    ctx.lineTo(originX-(side/2), originY+(side/2));
+    ctx.lineTo(originX, originY);
+    ctx.closePath();
+
+    ctx.fill();
+
+    // ctx.fillStyle = `rgba(${red},${green},${blue},${alpha})`;
+    // ctx.fillRect(originX, originY, width, height);
+
 }, interval); //ogni millisec cosa fare
