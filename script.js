@@ -27,10 +27,10 @@ const ctx = canvas.getContext('2d');
 //     ctx.fillRect(originX,originY,width,height);
 // }
 
-interval = 200;
+interval = 50;
 
 setInterval(() => {
-    ctx.fillStyle = 'rgba(255,255,255,0.05)'; //alpha più piccolo, storico più lento
+    ctx.fillStyle = 'rgba(255,255,255,0.005)'; //alpha più piccolo, storico più lento
     ctx.fillRect(0, 0, 600, 600);
 
     // const width = Math.random() * 200;
@@ -40,8 +40,8 @@ setInterval(() => {
     // const originY = Math.random() * (600 - height);
 
     const side = Math.random() * 200;
-    const originX = Math.random() * (600 - side);
-    const originY = Math.random() * (600 - side);
+    const originX = Math.random() * 600;
+    const originY = Math.random() * 600;
 
     const red = Math.random() * 255;
     const green = Math.random() * 255;
@@ -52,8 +52,8 @@ setInterval(() => {
 
     ctx.beginPath();
     ctx.moveTo(originX, originY);
-    ctx.lineTo(originX+(side/2), originY+(side/2));
-    ctx.lineTo(originX-(side/2), originY+(side/2));
+    ctx.lineTo(originX+(side/4), originY+(side/2));
+    ctx.lineTo(originX-(side/4), originY+(side/2));
     ctx.lineTo(originX, originY);
     ctx.closePath();
 
