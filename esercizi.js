@@ -85,23 +85,22 @@ function setUp() {
     canvas = document.getElementById('my-canvas');
     ctx = canvas.getContext('2d');
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 300; i++) {
         const rect = {};
 
         //dimensioni rect
-        rect.width = 10;
-        rect.height = 10;
+        rect.side = (Math.random() * 6) + 4;
 
         //partenza rect
         rect.originX = Math.random() * 600;
-        rect.originY = Math.random() * -50;
+        rect.originY = Math.random() * -600;
 
         //colori rect iniziale
         rect.color = 'white'
 
         //velocità rect inziale
         rect.speedX = 0;
-        rect.speedY = 1;
+        rect.speedY = 0.5;
         
         entities.push(rect);
     }
@@ -121,12 +120,14 @@ function update() {
         //probabilità di cambiare velocità
         if(rollX < 0.5) {
             //la curva e velocità
-            const speedDelta = -0.05;
+            const speedDelta = -0.02;
             rect.speedX += speedDelta;
         } else {
-            const speedDelta = 0.05;
+            const speedDelta = 0.02;
             rect.speedX += speedDelta;
         }
+
+        rect.originY = rect.originY % 600;
     }
 }
 
@@ -136,7 +137,7 @@ function draw() {
     for (let i = 0; i < entities.length; i++) {
         const rect = entities[i];
         ctx.fillStyle = rect.color;
-        ctx.fillRect(rect.originX, rect.originY, rect.width, rect.height);
+        ctx.fillRect(rect.originX, rect.originY, rect.side, rect.side);
     }
 }
 
